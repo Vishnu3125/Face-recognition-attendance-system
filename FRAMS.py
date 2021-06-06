@@ -1,0 +1,113 @@
+from tkinter import *
+from tkinter import ttk
+import tkinter.messagebox
+import os
+
+def open_admin_panel():
+    os.system('python3 FRAMS_ADMIN.py')
+    
+def open_student_panel():
+    os.system('python3 FRAMS_STUDENT.py')
+    
+root = Tk()
+root.geometry("480x286")
+root.title("Main Window")
+
+def on_closing():
+        from tkinter import messagebox
+        if messagebox.askokcancel("Quit", "Do you want to quit?"):
+            root.destroy()
+    
+root.protocol("WM_DELETE_WINDOW", on_closing)
+
+frame_l =  Frame(root, height = 286, width = 240, bg = "#4D4D4D")
+frame_r =  Frame(root, height = 286, width = 240, bg = "#4D4D4D")
+
+frame_l.place(x=0, y=0)
+frame_r.place(x=240, y=0)
+
+photo_admin1 = PhotoImage(file = r"/home/pi/Desktop/frams/Icon/man1.png")
+button1 = Button(root, image = photo_admin1, text="Admin", command=open_admin_panel, compound=TOP, height=275, width=220, bg = "#4D4D4D", fg="snow", activebackground="#a4c46c", activeforeground="white", highlightthickness = 0, bd=0, font=('times', 18, 'bold'))
+button1.place(x=0, y=0)
+
+photo_admin2 = PhotoImage(file = r"/home/pi/Desktop/frams/Icon/student1.png")
+button2 = Button(root, image = photo_admin2, text="Student", command=open_student_panel, compound=TOP, height=275, width=220, bg = "#4D4D4D", fg="snow", activebackground="#e66165", activeforeground="white", highlightthickness = 0, bd=0, font=('times', 18, 'bold'))
+button2.place(x=240, y=0)
+
+root.mainloop()
+#FRAMS_ADMIN_1.admin()
+"""
+class Authentication:
+    user = 'frams'
+    passw = 'frams'
+
+    def __init__(self, root):
+
+        self.root = root
+        self.root.title('USER AUTHENTICATION')
+
+        '''Make Window 10X10'''
+        rows = 0
+        while rows < 10:
+            self.root.rowconfigure(rows, weight=1)
+            self.root.columnconfigure(rows, weight=1)
+            rows += 1
+
+        '''Username and Password'''
+
+        frame = LabelFrame(self.root, text='Login')
+        frame.grid(row=1, column=1, columnspan=10, rowspan=10)
+
+        Label(frame, text=' Username ').grid(row=2, column=1, sticky=W)
+        self.username = Entry(frame)
+        self.username.grid(row=2, column=2)
+
+        Label(frame, text=' Password ').grid(row=5, column=1, sticky=W)
+        self.password = Entry(frame, show='*')
+        self.password.grid(row=5, column=2)
+
+        # Button
+
+        ttk.Button(frame, text='LOGIN', command=self.login_user).grid(row=7, column=2)
+        # ttk.Button(frame, text='FaceID(Beta)',command = self.face_unlock).grid(row=8, column=2)
+        ttk.Button(frame, text='Student Sign In', command=self.login_student).grid(row=8, column=2)
+        '''Message Display'''
+        self.message = Label(text='', fg='Red')
+        self.message.grid(row=9, column=6)
+
+    def login_student(self):
+        # Destroy current window
+        root.destroy()
+        #open student panel
+        os.system('python3 FRAMS_STUDENT.py')
+
+    def login_user(self):
+
+        '''Check username and password entered are correct'''
+        if self.username.get() == self.user and self.password.get() == self.passw:
+
+
+            # Destroy current window
+            root.destroy()
+
+            # Open new window
+            os.system('python3 FRAMS_ADMIN.py')
+
+
+
+        else:
+
+            '''Prompt user that either id or password is wrong'''
+            self.message['text'] = 'Username or Password incorrect. Try again!'
+    '''
+    def face_unlock(self):
+        self.message['text'] = 'Be Patient! Developer working hard to push this feature..'
+'''
+
+if __name__ == '__main__':
+    root = Tk()
+    root.geometry('425x185+700+300')
+    application = Authentication(root)
+
+    root.mainloop()
+"""
